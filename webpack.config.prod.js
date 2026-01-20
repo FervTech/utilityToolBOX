@@ -1,26 +1,39 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
-module.exports = merge(common, {
+module.exports = {
   mode: 'production',
+
+  // CHANGE THIS: Use your actual entry file
+  entry: './app.js',  // or './src/app.js' or whatever your path is
+
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'  // This will be your output file
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
-    }),
-    new CopyPlugin({
-      patterns: [
-        { from: 'img', to: 'img' },
-        { from: 'css', to: 'css' },
-        { from: 'js/vendor', to: 'js/vendor' },
-        { from: 'icon.svg', to: 'icon.svg' },
-        { from: 'favicon.ico', to: 'favicon.ico' },
-        { from: 'robots.txt', to: 'robots.txt' },
-        { from: 'icon.png', to: 'icon.png' },
-        { from: '404.html', to: '404.html' },
-        { from: 'site.webmanifest', to: 'site.webmanifest' },
-      ],
-    }),
+      template: './index.html',  // If you have an HTML file
+      // OR if you don't have HTML:
+      templateContent: `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>My App</title>
+          </head>
+          <body>
+            <div id="app"></div>
+            <script src="bundle.js"></script>
+          </body>
+        </html>
+      `
+    })
   ],
-});
+
+  stats: {
+    errorDetails: true,
+    children: true
+  }
+};

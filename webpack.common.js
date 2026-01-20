@@ -9,4 +9,5 @@ module.exports = {
     clean: true,
     filename: './js/app.js',
   },
+
 };
