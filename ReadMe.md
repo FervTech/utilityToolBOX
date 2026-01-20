@@ -111,3 +111,15 @@ Tools remember your last inputs during the session
 Use keyboard shortcuts where available (like spacebar in chronometer)
 
 Perfect for developers, sysadmins, designers, and anyone who needs quick access to common utilities without installing software!
+
+utilityToolBOX/
+├── public/
+│   ├── index.html
+│   ├── js/
+│   │   └── app.js
+│   └── css/
+│       └── style.css
+├── package.json
+├── vercel.json
+├── build.js
+└── dist/ (will be created)
