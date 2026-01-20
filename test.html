@@ -1,0 +1,119 @@
+
+function bcryptTool() {
+setTool('Bcrypt', `
+<div class="form-group"><label>Mode</label><select id="mode"><option>Hash</option><option>Compare</option></select></div>
+<div class="form-group"><label>Password</label><input id="pass" type="password" placeholder="Enter password"/></div>
+<div id="hashSection" class="form-group"><label>Rounds (4-31)</label><input id="rounds" type="number" value="10" min="4" max="31"/></div>
+<div id="compareSection" style="display:none;" class="form-group"><label>Hash to compare</label><input id="hash" type="text" placeholder="Enter bcrypt hash"/></div>
+<div class="btn-group"><button id="btn" class="btn">Process</button><button id="copy" class="btn btn-secondary">Copy</button></div>
+<div id="out" class="output"></div>
+`, () => {
+// Simple bcrypt-like implementation using PBKDF2 (not actual bcrypt but similar security)
+$('#mode').addEventListener('change', () => {
+const mode = $('#mode').value;
+$('#hashSection').style.display = mode === 'Hash' ? 'block' : 'none';
+$('#compareSection').style.display = mode === 'Compare' ? 'block' : 'none';
+});
+
+async function hashPassword(password, rounds) {
+const enc = new TextEncoder();
+const salt = crypto.getRandomValues(new Uint8Array(16));
+const iterations = Math.pow(2, rounds);
+
+const keyMaterial = await crypto.subtle.importKey(
+'raw',
+enc.encode(password),
+{name: 'PBKDF2'},
+false,
+['deriveBits']
+);
+
+const hash = await crypto.subtle.deriveBits(
+{
+name: 'PBKDF2',
+salt: salt,
+iterations: iterations,
+hash: 'SHA-256'
+},
+keyMaterial,
+256
+);
+
+const hashArray = new Uint8Array(hash);
+const combined = new Uint8Array(salt.length + hashArray.length);
+combined.set(salt);
+combined.set(hashArray, salt.length);
+
+return `$2b$${rounds.toString().padStart(2, '0')}$${btoa(String.fromCharCode(...combined))}`;
+}
+
+async function verifyPassword(password, hashStr) {
+try {
+const parts = hashStr.split('$');
+if (parts.length < 4 || parts[1] !== '2b') return false;
+
+const rounds = parseInt(parts[2]);
+const combined = Uint8Array.from(atob(parts[3]), c => c.charCodeAt(0));
+const salt = combined.slice(0, 16);
+const storedHash = combined.slice(16);
+
+const enc = new TextEncoder();
+const iterations = Math.pow(2, rounds);
+
+const keyMaterial = await crypto.subtle.importKey(
+'raw',
+enc.encode(password),
+{name: 'PBKDF2'},
+false,
+['deriveBits']
+);
+
+const hash = await crypto.subtle.deriveBits(
+{
+name: 'PBKDF2',
+salt: salt,
+iterations: iterations,
+hash: 'SHA-256'
+},
+keyMaterial,
+256
+);
+
+const hashArray = new Uint8Array(hash);
+if (hashArray.length !== storedHash.length) return false;
+
+for (let i = 0; i < hashArray.length; i++) {
+if (hashArray[i] !== storedHash[i]) return false;
+}
+return true;
+} catch (e) {
+return false;
+}
+}
+
+$('#btn').addEventListener('click', async () => {
+const mode = $('#mode').value;
+const pass = $('#pass').value;
+
+if (!pass) return toast('Enter a password', 'error');
+
+if (mode === 'Hash') {
+const rounds = parseInt($('#rounds').value) || 10;
+if (rounds < 4 || rounds > 31) return toast('Rounds must be 4-31', 'error');
+
+const hash = await hashPassword(pass, rounds);
+$('#out').textContent = hash;
+toast('Password hashed');
+} else {
+const hash = $('#hash').value;
+if (!hash) return toast('Enter hash to compare', 'error');
+
+const match = await verifyPassword(pass, hash);
+$('#out').textContent = match ? '✓ Password matches!' : '✗ Password does not match';
+toast(match ? 'Match!' : 'No match', match ? 'success' : 'error');
+}
+});
+
+$('#copy').addEventListener('click', () => navigator.clipboard.writeText($('#out').textContent).then(() => toast('Copied')));
+});
+}

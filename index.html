@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Utility Toolbox — Complete</title>
+  <meta name="description" content="All-in-one developer utilities"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+  <div class="logo">
+    <a href="index.html">
+    <div class="logo-icon">UT</div>
+    <span>Utility Toolbox</span>
+    </a>
+  </div>
+  <div class="search-container">
+    <input id="search" type="search" placeholder="Search tools..." />
+  </div>
+  <button class="home-btn" id="homeBtn"><i class="fa-solid fa-house"></i></button>
+  <div class="header-actions">
+    <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+    <a href="https://buymeacoffee.com/fervtech" target="_blank" class="theme-toggle" title="Buy me a coffee" style="text-decoration: none;"><i class="fa-solid fa-coffee"></i></a>
+  </div>
+</header>
+
+<div class="layout">
+  <aside id="sidebar">
+    <button class="dashboard-btn" id="dashboardBtn">
+      <span><i class="fa-solid fa-grip"></i></span>
+      <span>Dashboard</span>
+    </button>
+
+    <div class="category" data-category="crypto">
+      <span>Crypto</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="crypto">
+      <li data-tool="token"><span class="tool-icon"><i class="fas fa-random"></i></span>Token generator</li>
+      <li data-tool="hash"><span class="tool-icon"><i class="fas fa-hashtag"></i></span>Hash text</li>
+      <li data-tool="bcrypt"><span class="tool-icon"><i class="fas fa-lock"></i></span>Bcrypt</li>
+      <li data-tool="uuids"><span class="tool-icon"><i class="fas fa-fingerprint"></i></span>UUIDs generator</li>
+      <li data-tool="ulid"><span class="tool-icon"><i class="fas fa-id-badge"></i></span>ULID generator</li>
+      <li data-tool="encrypt"><span class="tool-icon"><i class="fas fa-lock-open"></i></span>Encrypt / decrypt text</li>
+      <li data-tool="bip39"><span class="tool-icon"><i class="fas fa-coins"></i></span>BIP39 passphrase generator</li>
+      <li data-tool="hmac"><span class="tool-icon"><i class="fas fa-signature"></i></span>Hmac generator</li>
+      <li data-tool="rsa"><span class="tool-icon"><i class="fas fa-key"></i></span>RSA key pair generator</li>
+      <li data-tool="pwStrength"><span class="tool-icon"><i class="fas fa-shield-check"></i></span>Password strength analyser</li>
+      <li data-tool="pdfcheck"><span class="tool-icon"><i class="fas fa-file-signature"></i></span>PDF signature checker</li>
+    </ul>
+
+    <div class="category" data-category="converter">
+      <span>Converter</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="converter">
+      <li data-tool="datetime"><span class="tool-icon"><i class="fas fa-calendar-alt"></i></span>Date-time converter</li>
+      <li data-tool="intbase"><span class="tool-icon"><i class="fas fa-calculator"></i></span>Integer base converter</li>
+      <li data-tool="roman"><span class="tool-icon"><i class="fas fa-hashtag"></i></span>Roman numeral converter</li>
+      <li data-tool="b64"><span class="tool-icon"><i class="fas fa-file-alt"></i></span>Base64 string encoder/decoder</li>
+      <li data-tool="b64file"><span class="tool-icon"><i class="fas fa-file"></i></span>Base64 file converter</li>
+      <li data-tool="color"><span class="tool-icon"><i class="fas fa-palette"></i></span>Color converter</li>
+      <li data-tool="case"><span class="tool-icon"><i class="fas fa-text-height"></i></span>Case converter</li>
+      <li data-tool="nato"><span class="tool-icon"><i class="fas fa-broadcast-tower"></i></span>Text to NATO alphabet</li>
+      <li data-tool="asciibin"><span class="tool-icon"><i class="fas fa-binary"></i></span>Text to ASCII binary</li>
+      <li data-tool="unicode"><span class="tool-icon"><i class="fas fa-globe-asia"></i></span>Text to Unicode</li>
+      <li data-tool="yaml2json"><span class="tool-icon"><i class="fas fa-file-code"></i></span>YAML to JSON converter</li>
+      <li data-tool="yaml2toml"><span class="tool-icon"><i class="fas fa-file-code"></i></span>YAML to TOML</li>
+      <li data-tool="json2yaml"><span class="tool-icon"><i class="fas fa-file-code"></i></span>JSON to YAML converter</li>
+      <li data-tool="json2toml"><span class="tool-icon"><i class="fas fa-file-code"></i></span>JSON to TOML</li>
+      <li data-tool="listconv"><span class="tool-icon"><i class="fas fa-list"></i></span>List converter</li>
+      <li data-tool="toml2json"><span class="tool-icon"><i class="fas fa-file-code"></i></span>TOML to JSON</li>
+      <li data-tool="toml2yaml"><span class="tool-icon"><i class="fas fa-file-code"></i></span>TOML to YAML</li>
+      <li data-tool="xml2json"><span class="tool-icon"><i class="fas fa-file-code"></i></span>XML to JSON</li>
+      <li data-tool="json2xml"><span class="tool-icon"><i class="fas fa-file-code"></i></span>JSON to XML</li>
+      <li data-tool="md2html"><span class="tool-icon"><i class="fas fa-file-alt"></i></span>Markdown to HTML</li>
+    </ul>
+
+    <div class="category" data-category="web">
+      <span>Web</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="web">
+      <li data-tool="urlenc"><span class="tool-icon"><i class="fas fa-link"></i></span>Encode/decode URL-formatted strings</li>
+      <li data-tool="escapehtml"><span class="tool-icon"><i class="fas fa-code"></i></span>Escape HTML entities</li>
+      <li data-tool="urlparser"><span class="tool-icon"><i class="fas fa-globe"></i></span>URL parser</li>
+      <li data-tool="deviceinfo"><span class="tool-icon"><i class="fas fa-mobile-alt"></i></span>Device information</li>
+      <li data-tool="basicauth"><span class="tool-icon"><i class="fas fa-user-shield"></i></span>Basic auth generator</li>
+      <li data-tool="og"><span class="tool-icon"><i class="fas fa-share-alt"></i></span>Open graph meta generator</li>
+      <li data-tool="otp"><span class="tool-icon"><i class="fas fa-mobile-alt"></i></span>OTP code generator</li>
+      <li data-tool="mimetypes"><span class="tool-icon"><i class="fas fa-file"></i></span>MIME types</li>
+      <li data-tool="jwt"><span class="tool-icon"><i class="fas fa-key"></i></span>JWT parser</li>
+      <li data-tool="keycode"><span class="tool-icon"><i class="fas fa-keyboard"></i></span>Keycode info</li>
+      <li data-tool="slugify"><span class="tool-icon"><i class="fas fa-link"></i></span>Slugify string</li>
+      <li data-tool="wysiwyg"><span class="tool-icon"><i class="fas fa-edit"></i></span>HTML WYSIWYG editor</li>
+      <li data-tool="uap"><span class="tool-icon"><i class="fas fa-user"></i></span>User-agent parser</li>
+      <li data-tool="httpcodes"><span class="tool-icon"><i class="fas fa-server"></i></span>HTTP status codes</li>
+      <li data-tool="jsondiff"><span class="tool-icon"><i class="fas fa-exchange-alt"></i></span>JSON diff</li>
+      <li data-tool="safelink"><span class="tool-icon"><i class="fas fa-link"></i></span>Outlook Safelink decoder</li>
+    </ul>
+
+    <div class="category" data-category="development">
+      <span>Development</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="development">
+      <li data-tool="gitcheat"><span class="tool-icon"><i class="fab fa-git-alt"></i></span>Git cheatsheet</li>
+      <li data-tool="randport"><span class="tool-icon"><i class="fas fa-plug"></i></span>Random port generator</li>
+      <li data-tool="crontab"><span class="tool-icon"><i class="fas fa-clock"></i></span>Crontab generator</li>
+      <li data-tool="jsonpretty"><span class="tool-icon"><i class="fas fa-file-code"></i></span>JSON prettify and format</li>
+      <li data-tool="jsonmin"><span class="tool-icon"><i class="fas fa-compress"></i></span>JSON minify</li>
+      <li data-tool="jsontocsv"><span class="tool-icon"><i class="fas fa-file-csv"></i></span>JSON to CSV</li>
+      <li data-tool="sqlpretty"><span class="tool-icon"><i class="fas fa-database"></i></span>SQL prettify and format</li>
+      <li data-tool="chmod"><span class="tool-icon"><i class="fas fa-user-cog"></i></span>Chmod calculator</li>
+      <li data-tool="dockerrun"><span class="tool-icon"><i class="fab fa-docker"></i></span>Docker run to Docker compose</li>
+      <li data-tool="xmlfmt"><span class="tool-icon"><i class="fas fa-file-code"></i></span>XML formatter</li>
+      <li data-tool="yamlpretty"><span class="tool-icon"><i class="fas fa-file-code"></i></span>YAML prettify and format</li>
+      <li data-tool="emailnorm"><span class="tool-icon"><i class="fas fa-envelope"></i></span>Email normalizer</li>
+      <li data-tool="regextester"><span class="tool-icon"><i class="fas fa-search"></i></span>Regex Tester</li>
+      <li data-tool="regexcheat"><span class="tool-icon"><i class="fas fa-search"></i></span>Regex cheatsheet</li>
+    </ul>
+
+    <div class="category" data-category="network">
+      <span>Network</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="network">
+      <li data-tool="ipv4sub"><span class="tool-icon"><i class="fas fa-network-wired"></i></span>IPv4 subnet calculator</li>
+      <li data-tool="ipv4conv"><span class="tool-icon"><i class="fas fa-exchange-alt"></i></span>IPv4 address converter</li>
+      <li data-tool="ipv4range"><span class="tool-icon"><i class="fas fa-expand-arrows-alt"></i></span>IPv4 range expander</li>
+      <li data-tool="maclookup"><span class="tool-icon"><i class="fas fa-ethernet"></i></span>MAC address lookup</li>
+      <li data-tool="macgen"><span class="tool-icon"><i class="fas fa-ethernet"></i></span>MAC address generator</li>
+      <li data-tool="ipv6ula"><span class="tool-icon"><i class="fas fa-network-wired"></i></span>IPv6 ULA generator</li>
+    </ul>
+
+    <div class="category" data-category="math">
+      <span>Math</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="math">
+      <li data-tool="matheval"><span class="tool-icon"><i class="fas fa-calculator"></i></span>Math evaluator</li>
+      <li data-tool="eta"><span class="tool-icon"><i class="fas fa-clock"></i></span>ETA calculator</li>
+      <li data-tool="percent"><span class="tool-icon"><i class="fas fa-percent"></i></span>Percentage calculator</li>
+    </ul>
+
+    <div class="category" data-category="measurement">
+      <span>Measurement</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="measurement">
+      <li data-tool="chronometer"><span class="tool-icon"><i class="fas fa-stopwatch"></i></span>Chronometer</li>
+      <li data-tool="temp"><span class="tool-icon"><i class="fas fa-thermometer-half"></i></span>Temperature converter</li>
+      <li data-tool="benchmark"><span class="tool-icon"><i class="fas fa-chart-bar"></i></span>Benchmark builder</li>
+    </ul>
+
+    <div class="category" data-category="text">
+      <span>Text</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="text">
+      <li data-tool="lorem"><span class="tool-icon"><i class="fas fa-font"></i></span>Lorem ipsum generator</li>
+      <li data-tool="textstats"><span class="tool-icon"><i class="fas fa-chart-line"></i></span>Text statistics</li>
+      <li data-tool="emoji"><span class="tool-icon"><i class="fas fa-smile"></i></span>Emoji picker</li>
+      <li data-tool="obfuscator"><span class="tool-icon"><i class="fas fa-eye-slash"></i></span>String obfuscator</li>
+      <li data-tool="textdiff"><span class="tool-icon"><i class="fas fa-exchange-alt"></i></span>Text diff</li>
+      <li data-tool="numeronym"><span class="tool-icon"><i class="fas fa-hashtag"></i></span>Numeronym generator</li>
+      <li data-tool="asciiart"><span class="tool-icon"><i class="fas fa-font"></i></span>ASCII Art Text Generator</li>
+    </ul>
+
+    <div class="category" data-category="data">
+      <span>Data</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="data">
+      <li data-tool="phoneparse"><span class="tool-icon"><i class="fas fa-phone"></i></span>Phone parser and formatter</li>
+      <li data-tool="iban"><span class="tool-icon"><i class="fas fa-credit-card"></i></span>IBAN validator and parser</li>
+    </ul>
+
+    <div class="category" data-category="images">
+      <span>Images & Videos</span>
+      <span class="category-toggle">▼</span>
+    </div>
+    <ul class="tools-list" data-list="images">
+      <li data-tool="qrcode"><span class="tool-icon"><i class="fas fa-qrcode"></i></span>QR Code generator</li>
+      <li data-tool="wifiqr"><span class="tool-icon"><i class="fas fa-wifi"></i></span>WiFi QR Code generator</li>
+      <li data-tool="svg"><span class="tool-icon"><i class="fas fa-vector-square"></i></span>SVG placeholder generator</li>
+      <li data-tool="camera"><span class="tool-icon"><i class="fas fa-camera"></i></span>Camera recorder</li>
+    </ul>
+
+    <div class="category" data-category="footer-section">
+    </div>
+    <div class="tools-list" data-list="footer">
+      <span id="footer">
+        <p>&copy; <span id="current-year"></span> Fertech. All rights reserved.</p>
+      </span>
+    </div>
+
+  </aside>
+
+  <main id="mainContent">
+    <div class="card">
+      <div class="welcome-section">
+        <div class="welcome-icon">🛠️</div>
+        <h1 class="welcome-title">Utility Toolbox</h1>
+        <p class="welcome-text">
+          Your all-in-one collection of developer utilities. Everything runs client-side with modern web technologies.
+          Select any tool from the sidebar to get started.
+        </p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>🔒 Privacy First</h3>
+            <p>All processing happens locally in your browser. No data is sent to any server.</p>
+          </div>
+          <div class="feature-card">
+            <h3>⚡ Lightning Fast</h3>
+            <p>Instant results with no network delays. Works offline once loaded.</p>
+          </div>
+          <div class="feature-card">
+            <h3>🎨 Modern UI</h3>
+            <p>Beautiful, responsive design that works on all devices and screen sizes.</p>
+          </div>
+          <div class="feature-card">
+            <h3>🔧 50+ Tools</h3>
+            <p>Comprehensive collection of crypto, conversion, and development utilities.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
