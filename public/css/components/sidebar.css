@@ -1,0 +1,20 @@
+aside {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  padding: 16px 0;
+  overflow-y: auto;
+  transition: width 0.3s ease, padding 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#sidebar.collapsed {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+aside::-webkit-scrollbar { width: 6px; }
+aside::-webkit-scrollbar-track { background: transparent; }
+aside::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; transition: background-color 0.3s ease; }
+
